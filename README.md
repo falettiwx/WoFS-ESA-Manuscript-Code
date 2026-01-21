@@ -7,4 +7,4 @@ Limited quantities of smaller data (sensitivity and MRMS files) can be found in 
 _Accompanying WoFS forecast data are currently stored at the Texas Tech University High-Performance Computing Center (TTU HPCC) and are available upon request. For data requests, please contact Billy Faletti at william.faletti@noaa.gov._
 
 ## References:
-Faletti, W. L., C. C. Weiss, B. C. Ancell, and P. S. Skinner, 2026: Using Ensemble Sensitivity to Diagnose Environmental Modulation of Mesocyclone Intensity in the Warn-on-Forecast System. _Mon. Wea. Rev._, in review.
+Faletti, W. L., C. C. Weiss, P. S. Skinner, and B. C. Ancell 2026: Using Ensemble Sensitivity to Diagnose Environmental Modulation of Mesocyclone Intensity in the Warn-on-Forecast System. _Mon. Wea. Rev._, in review.
