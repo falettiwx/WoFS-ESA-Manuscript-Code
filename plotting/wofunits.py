@@ -15,7 +15,8 @@ class wofunits:
              'resp_path': '/Users/williamfaletti/Documents/python/thesis/wofs_code/respout_center', # storm-centered response function data path
              'mrms_data_path': '/Volumes/faletti_backup/MRMS_data', # path to MRMS data
              'sm_path': '/Volumes/faletti_backup/wofs_obs_motion', # storm motion CSV path
-             'wofs_locs_path': '/Users/williamfaletti/Documents/python/thesis/wofs_code/centers_state', # path to modeled storm center gridpoints
+             'wofs_locs_path_init': '/Users/williamfaletti/Documents/python/thesis/wofs_code/response_csv', # path to unprocessed modeled storm center gridpoint files
+             'wofs_locs_path': '/Users/williamfaletti/Documents/python/thesis/wofs_code/centers_state', # path to processed modeled storm center gridpoints
              'mrms_locs_path': '/Users/williamfaletti/Desktop', # path to MRMS observed storm center gridpoints
              'mapping_path': '/Users/williamfaletti/Documents/python/thesis/mapping/us_counties_states', # path to shapefiles
              'outplot_path': '/Users/williamfaletti/Documents/python/thesis/wofs_code/paper_figures' # plot save path

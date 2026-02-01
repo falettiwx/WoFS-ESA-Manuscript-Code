@@ -17,7 +17,13 @@ from metpy.units import units
 from metpy.plots import ctables
 import matplotlib.colors as colors
 
-drive_dir = '/Volumes/faletti_backup'
+wofs_path = wofunits.paths['wofs_path']
+sens_path = wofunits.paths['sens_path']
+resp_path = wofunits.paths['resp_path']
+wofs_locs_path_init = wofunits.paths['wofs_locs_path_init']
+wofs_locs_path = wofunits.paths['wofs_locs_path']
+mrms_locs_path = wofunits.paths['mrms_locs_path']
+outplot_path = wofunits.paths['outplot_path']
 
 def truncate_colormap(cmap, minval=0.0, maxval=1.0, n=100):
     new_cmap = colors.LinearSegmentedColormap.from_list('trunc({n},{a:.2f},{b:.2f})'.format(
@@ -39,55 +45,55 @@ def case_sel(case):
     """
     
     if case == '201905172100':
-        wofs_casedir = f'{drive_dir}/WOFS_output/wofs_20190517_2100'
+        wofs_casedir = f'{wofs_path}/wofs_20190517_2100'
         file_latlons = f'{wofs_casedir}/wofs_i201905172100_v201905172115.nc'
-        file_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/centers_state/max_gridpoint_storm_centering_201905172100.csv'
-        file_resp_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/response_csv/centered_response_201905172100.csv'
-        file_mrms_maxima = '/Users/williamfaletti/Desktop/mrms_maxima_indices_517'
-        files_wofs = sorted(glob.glob(f'{drive_dir}/WOFS_output/wofs_20190517_2100/wofs_i*'))[30:43]
+        file_coords = f'{wofs_locs_path}/max_gridpoint_storm_centering_201905172100.csv'
+        file_resp_coords = f'{wofs_locs_path_init}/centered_response_201905172100.csv'
+        file_mrms_maxima = f'{mrms_locs_path}/mrms_maxima_indices_517'
+        files_wofs = sorted(glob.glob(f'{wofs_casedir}/wofs_i*'))[30:43]
         state_times = np.arange(datetime.datetime(2019,5,17,22,30), datetime.datetime(2019,5,18,0,31), 
                       datetime.timedelta(minutes=15)).astype(datetime.datetime)
         resptime = '2019-05-18_00_30_00'
     
     if case == '201905172200':
-        wofs_casedir = f'{drive_dir}/WOFS_output/wofs_20190517_2200'
+        wofs_casedir = f'{wofs_path}/wofs_20190517_2200'
         file_latlons = f'{wofs_casedir}/wofs_i201905172200_v201905172215.nc'
-        file_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/centers_state/max_gridpoint_storm_centering_201905172200.csv'
-        file_resp_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/response_csv/centered_response_201905172200.csv'
-        file_mrms_maxima = '/Users/williamfaletti/Desktop/mrms_maxima_indices_517'
+        file_coords = f'{wofs_locs_path}/max_gridpoint_storm_centering_201905172200.csv'
+        file_resp_coords = f'{wofs_locs_path_init}/centered_response_201905172200.csv'
+        file_mrms_maxima = f'{mrms_locs_path}/mrms_maxima_indices_517'
         files_wofs = sorted(glob.glob(f'{wofs_casedir}/wofs_i*'))[6:19]
         state_times = np.arange(datetime.datetime(2019,5,17,22,30), datetime.datetime(2019,5,18,0,31), 
                       datetime.timedelta(minutes=15)).astype(datetime.datetime)
         resptime = '2019-05-18_00_30_00'
         
     if case == '201905202030':
-        wofs_casedir = f'{drive_dir}/WOFS_output/wofs_20190520_2030'
+        wofs_casedir = f'{wofs_path}/wofs_20190520_2030'
         file_latlons = f'{wofs_casedir}/wofs_i201905202030_v201905202045.nc'
-        file_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/centers_state/max_gridpoint_storm_centering_20190520.csv'
-        file_resp_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/response_csv/centered_response_20190520.csv'
-        file_mrms_maxima = '/Users/williamfaletti/Desktop/mrms_maxima_indices_520'
+        file_coords = f'{wofs_locs_path}/max_gridpoint_storm_centering_20190520.csv'
+        file_resp_coords = f'{wofs_locs_path_init}/centered_response_20190520.csv'
+        file_mrms_maxima = f'{mrms_locs_path}/mrms_maxima_indices_520'
         files_wofs = sorted(glob.glob(f'{wofs_casedir}/wofs_i*'))[12:25]
         state_times = np.arange(datetime.datetime(2019,5,20,21,0), datetime.datetime(2019,5,20,22,31), 
                       datetime.timedelta(minutes=15)).astype(datetime.datetime)
         resptime = '2019-05-20_22_30_00'
         
     if case == '201905262000':
-        wofs_casedir = f'{drive_dir}/WOFS_output/wofs_20190526_2000'
+        wofs_casedir = f'{wofs_path}/wofs_20190526_2000'
         file_latlons = f'{wofs_casedir}/wofs_i201905262000_v201905262015.nc'
-        file_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/centers_state/max_gridpoint_storm_centering_20190526.csv'
-        file_resp_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/response_csv/centered_response_20190526.csv'
-        file_mrms_maxima = '/Users/williamfaletti/Desktop/mrms_maxima_indices_526'
+        file_coords = f'{wofs_locs_path}/max_gridpoint_storm_centering_20190526.csv'
+        file_resp_coords = f'{wofs_locs_path_init}/centered_response_20190526.csv'
+        file_mrms_maxima = f'{mrms_locs_path}/mrms_maxima_indices_526'
         files_wofs = sorted(glob.glob(f'{wofs_casedir}/wofs_i*'))[0:13]
         state_times = np.arange(datetime.datetime(2019,5,26,20,30), datetime.datetime(2019,5,26,21,31), 
                       datetime.timedelta(minutes=15)).astype(datetime.datetime)
         resptime = '2019-05-26_21_30_00'
         
     if case == '201905282230':
-        wofs_casedir = f'{drive_dir}/WOFS_output/wofs_20190528_2230'
+        wofs_casedir = f'{wofs_path}/wofs_20190528_2230'
         file_latlons = f'{wofs_casedir}/wofs_i201905282230_v201905282245.nc'
-        file_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/centers_state/max_gridpoint_storm_centering_20190528.csv'
-        file_resp_coords = '/Users/williamfaletti/Documents/python/thesis/wofs_code/response_csv/centered_response_20190528.csv'
-        file_mrms_maxima = '/Users/williamfaletti/Desktop/mrms_maxima_indices_528'
+        file_coords = f'{wofs_locs_path}/max_gridpoint_storm_centering_20190528.csv'
+        file_resp_coords = f'{wofs_locs_path_init}/centered_response_20190528.csv'
+        file_mrms_maxima = f'{mrms_locs_path}/mrms_maxima_indices_528'
         files_wofs = sorted(glob.glob(f'{wofs_casedir}/wofs_i*'))[18:31]
         state_times = np.arange(datetime.datetime(2019,5,28,23,0), datetime.datetime(2019,5,29,1,1), 
                       datetime.timedelta(minutes=15)).astype(datetime.datetime)
@@ -116,8 +122,7 @@ def create_coords_df(file_coords, file_mrms_maxima):
     
     
     for i in range(len(valid_times)):
-        #print(df.iloc[:,i].str.replace('(', '').str.replace(')', ''))
-        col = df.iloc[:,i].str.replace('(', '').str.replace(')', '')
+        col = df.iloc[:,i].str.replace('(', '').str.replace(')', '')#, regex=False)
         col = col.apply(lambda x: pd.Series(str(x).split(',')))
         col = col.rename(columns={0:f'{valid_times[i]} nx',
                                   1:f'{valid_times[i]} ny'})
@@ -377,7 +382,7 @@ def srw_ang_diff(case,state_time,zero_deg_ang=90):
     Returns:
     """
     
-    file = f'{drive_dir}/WOFS_output/wofs_{case[:8]}_{case[8:]}/wofs_center_i{case}_v{state_time.year}'+\
+    file = f'{wofs_path}/wofs_{case[:8]}_{case[8:]}/wofs_center_i{case}_v{state_time.year}'+\
             f'{str(state_time.month).zfill(2)}{str(state_time.day).zfill(2)}{str(state_time.hour).zfill(2)}'+\
             f'{str(state_time.minute).zfill(2)}.nc'
     
@@ -516,9 +521,9 @@ def sens_summary(case, statetime, respvar, center, statvar='stdsens'):
     sfcvars = ['T2','TD2','U10','V10','WND-MAG10']
     
     if center == False:
-        sensfiles = glob.glob(f'{drive_dir}/sens_out/sens_gr_center_{case}/stats_{respvar}*{statetime[2:4]}_{statetime[4:6]}_00.nc')
+        sensfiles = glob.glob(f'{sens_path}/sens_gr_center_{case}/stats_{respvar}*{statetime[2:4]}_{statetime[4:6]}_00.nc')
     elif center == True:
-        sensfiles = glob.glob(f'{drive_dir}/sens_out/sens_center_{case}/stats_{respvar}*{statetime[2:4]}_{statetime[4:6]}_00.nc')
+        sensfiles = glob.glob(f'{sens_path}/sens_center_{case}/stats_{respvar}*{statetime[2:4]}_{statetime[4:6]}_00.nc')
     
     sensfiles = [ file for file in sensfiles if any(sfcvar in file[-28:] for sfcvar in sfcvars) ]
     
@@ -533,9 +538,9 @@ def sens_summary(case, statetime, respvar, center, statvar='stdsens'):
     
     
 def truncate_colormap(cmap, minval=0.0, maxval=1.0, n=100):
-    new_cmap = colors.LinearSegmentedColormap.from_list('trunc({n},{a:.2f},{b:.2f})'.format(n=cmap.name, a=minval, b=maxval),cmap(np.linspace(minval, maxval, n)))
+    new_cmap = colors.LinearSegmentedColormap.from_list('trunc({n},{a:.2f},{b:.2f})'.format(
+                        n=cmap.name, a=minval, b=maxval),cmap(np.linspace(minval, maxval, n)))
     return new_cmap
-
 
 def cref_cmap():
     """
@@ -600,7 +605,7 @@ def stats_plot_center(case, moment, statevars, cmap='Reds', barbs=True, show_dom
         
         resp_time = datetime.datetime(int(respyear), int(respmonth), int(respday), int(resphour), int(respmin))
         
-        file_ref = f'{drive_dir}/WOFS_output/wofs_{inityear}{initmonth}{initday}_{inithour}' + \
+        file_ref = f'{wofs_path}/wofs_{inityear}{initmonth}{initday}_{inithour}' + \
                 f'{initmin}/wofs_center_i{inityear}{initmonth}{initday}{inithour}{initmin}_v{state_time.year}{str_statemonth}' + \
                 f'{state_time.day}{str_statehour}{str_statemin}.nc'
         
@@ -654,7 +659,7 @@ def stats_plot_center(case, moment, statevars, cmap='Reds', barbs=True, show_dom
                 # Plot wind barbs at level of variable
                     # if variable at upper-air mandatory level, plot wind at that level
                     # if near-surface or convective variable, plot surface wind
-
+                
                 try:
                     u = (np.nanmean(ds_ref[f'U{statevar[-3:]}_SR'], axis=(0,1))*units.meter_per_second).to(units.knot)
                     v = (np.nanmean(ds_ref[f'V{statevar[-3:]}_SR'], axis=(0,1))*units.meter_per_second).to(units.knot)
@@ -666,7 +671,7 @@ def stats_plot_center(case, moment, statevars, cmap='Reds', barbs=True, show_dom
                 #cblimit_min = round(np.nanpercentile(mean_state, 10), 0)
                 #cblimit_max = round(np.nanpercentile(mean_state, 90), 0)
                 #cbstep = round((cblimit_max - cblimit_min)/21, 1)
-    
+                
                 #levels_auto = np.arange(cblimit_min, cblimit_max + cbstep, cbstep)
                 
                 # Plot state mean and mean storm
@@ -727,7 +732,7 @@ def stats_plot_center(case, moment, statevars, cmap='Reds', barbs=True, show_dom
         plt.suptitle(f'{titlestr} at {int((resp_time - state_time).seconds/60)}-min lead time', weight='bold')
         plt.tight_layout()
         
-        outdir = '/Users/williamfaletti/Documents/python/thesis/wofs_code/sens_outplots_center'
+        outdir = f'{outplot_path}/sens_outplots_center'
         
         plt.savefig(f'{outdir}/{case}/{moment}_center_{state_time.year}{str_statemonth}{state_time.day}' + \
                 f'{str_statehour}_{str_statemin}_{statevars[0]}_{statevars[1]}.jpg', bbox_inches='tight', facecolor='w', dpi = 200)
@@ -782,7 +787,7 @@ def sens_plot_center(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-
         
         resp_time = datetime.datetime(int(respyear), int(respmonth), int(respday), int(resphour), int(respmin))
         
-        file_ref = f'{drive_dir}/WOFS_output/wofs_{inityear}{initmonth}{initday}_{inithour}' + \
+        file_ref = f'{wofs_path}/wofs_{inityear}{initmonth}{initday}_{inithour}' + \
                     f'{initmin}/wofs_center_i{inityear}{initmonth}{initday}{inithour}{initmin}_v{state_time.year}{str_statemonth}' + \
                     f'{state_time.day}{str_statehour}{str_statemin}.nc'
         
@@ -828,7 +833,7 @@ def sens_plot_center(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-
                 if nrow==1 and ncol==1:
                     statevar=statevars[3]
                 
-                file_sens = f'{drive_dir}/sens_out/sens_center_2019{initmonth}{initday}{inithour}{initmin}' + \
+                file_sens = f'{sens_path}/sens_center_2019{initmonth}{initday}{inithour}{initmin}' + \
                             f'/stats_{respvar}_max_{resphour}_{respmin}_00_{statevar}_{str_statehour}_{str_statemin}_00.nc'
                 
                 ds_sens = xr.open_dataset(file_sens)
@@ -912,7 +917,7 @@ def sens_plot_center(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-
         plt.suptitle(f'{int((resp_time - state_time).seconds/60)}-min lead time', weight='bold')
         plt.tight_layout()
         
-        outdir = '/Users/williamfaletti/Documents/python/thesis/wofs_code/sens_outplots_center'
+        outdir = f'{outplot_path}/sens_outplots_center'
         
         if save == True:
             
@@ -930,7 +935,9 @@ def sens_plot_center(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-
 def sr_gr_compareplot(cases=['201905172100',
                              '201905202030',
                              '201905262000',
-                             '201905282230'], respvar_sr='UH25-30MIN', nrows=2, ncols=2):
+                             '201905282230'], respvar_sr='UH25-30MIN', nrows=2, ncols=2, save=False, 
+                              outdir=f'{outplot_path}/assorted_esa_plots'
+                              ):
     """
     Returns a 4-panel plot to compare ground- vs. storm-relative mesocyclone 
     intensity response functions for the 4 WoFS cases analyzed in this research.
@@ -944,7 +951,6 @@ def sr_gr_compareplot(cases=['201905172100',
     
     """
     
-    dir_resp_sr = '/Users/williamfaletti/Documents/python/thesis/wofs_code/respout_center'
     respvar_sr = respvar_sr.replace('-','_')
     
     # Convert storm-relative response variable names to ground-relative equivalent names
@@ -967,7 +973,7 @@ def sr_gr_compareplot(cases=['201905172100',
 
     # Iterate through cases
     for i, case in enumerate(cases):
-        print(case)
+        #print(case)
         # Assign axes to plot based on order of cases in list
         if case == cases[0]:
             nrow,ncol = 0,0
@@ -977,30 +983,28 @@ def sr_gr_compareplot(cases=['201905172100',
             nrow,ncol = 1,0
         if case == cases[3]:
             nrow,ncol = 1,1
-        print('file I/O initiated')
+        #print('file I/O initiated')
         # Grab case specs
         wofs_casedir,file_latlons,file_coords,file_resp_coords,file_mrms_maxima,files_wofs,state_times,resptime = case_sel(case)
-        print('file I/O succeeded')
+        #print('file I/O succeeded')
         # Process date/time strings
         respmin, resphour, respday, respmonth, respyear = resptime[14:16],resptime[11:13],resptime[8:10],resptime[5:7],resptime[0:4]
         resp_time = datetime.datetime(int(respyear), int(respmonth), int(respday), int(resphour), int(respmin))
         
         # Define response files
             # storm-relative
-        dir_resp_sr = dir_resp_sr
-        file_resp_sr = f'{dir_resp_sr}/resp_{respvar_sr}_max_{resp_time.year}-{str(resp_time.month).zfill(2)}-' + \
+        file_resp_sr = f'{resp_dir}/resp_{respvar_sr}_max_{resp_time.year}-{str(resp_time.month).zfill(2)}-' + \
                         f'{str(resp_time.day).zfill(2)}_{str(resp_time.hour).zfill(2)}_{str(resp_time.minute).zfill(2)}_00.nc'
             # ground-relative
-        dir_resp_gr = f'{drive_dir}/sens_out'
-        file_resp_gr = f'{dir_resp_gr}/sens_{case}/resp_{respvar_gr}_max_{resp_time.year}-{str(resp_time.month).zfill(2)}-' + \
+        file_resp_gr = f'{sens_path}/sens_{case}/resp_{respvar_gr}_max_{resp_time.year}-{str(resp_time.month).zfill(2)}-' + \
                         f'{str(resp_time.day).zfill(2)}_{str(resp_time.hour).zfill(2)}_{str(resp_time.minute).zfill(2)}_00.nc'
         
         # Open response files
-        print('Open GR response file')
+        #print('Open GR response file')
         ds_resp_gr = xr.open_dataset(file_resp_gr)
-        print('Success; open SR response file')
+        #print('Success; open SR response file')
         ds_resp_sr = xr.open_dataset(file_resp_sr)
-        print('Success')
+        #print('Success')
         
         # Plot
             # SR vs GR response
@@ -1030,9 +1034,8 @@ def sr_gr_compareplot(cases=['201905172100',
     
     plt.tight_layout()
     
-    outdir = '/Users/williamfaletti/Documents/python/thesis/wofs_code/sens_outplots_center/'
-    
-    plt.savefig(f'{outdir}/resp_compare_sr_gr_{labelstr}.jpg', dpi=250)
+    if save == True:
+        plt.savefig(f'{outdir}/resp_compare_sr_gr_{labelstr}.jpg', dpi=250)
     
     plt.show()
 
@@ -1070,10 +1073,10 @@ def avg_regression_center(case, statevars, respvar='UH25-05MIN', if_region='if',
     
     
     # Define response file and pull out response variable
-    dir_resp = '/Users/williamfaletti/Documents/python/thesis/wofs_code/respout_center'
+
     resp_time = datetime.datetime(int(resptime[0:4]), int(resptime[5:7]), 
                                   int(resptime[8:10]), int(resptime[11:13]), int(resptime[14:16]))
-    file_resp = f'{dir_resp}/resp_{resp_str}_max_{resp_time.year}-{str(resp_time.month).zfill(2)}' + \
+    file_resp = f'{resp_path}/resp_{resp_str}_max_{resp_time.year}-{str(resp_time.month).zfill(2)}' + \
                 f'-{str(resp_time.day).zfill(2)}_{str(resp_time.hour).zfill(2)}_{str(resp_time.minute).zfill(2)}_00.nc'
     ds_resp = xr.open_dataset(file_resp)
     resp = ds_resp[resp_str].values
@@ -1126,7 +1129,7 @@ def avg_regression_center(case, statevars, respvar='UH25-05MIN', if_region='if',
             if statevar == statevars[3]:
                 nrow,ncol = 1,1
             
-            state_dir = f'{drive_dir}/WOFS_output/wofs_{case[:-4]}_{case[-4:]}'
+            state_dir = f'{wofs_path}/wofs_{case[:-4]}_{case[-4:]}'
             ds_state = xr.open_dataset(f'{state_dir}/wofs_center_i{case}_v{state_time.year}' + \
                                         f'{str(state_time.month).zfill(2)}' + \
                                         f'{str(state_time.day).zfill(2)}{str(state_time.hour).zfill(2)}' + \
@@ -1134,8 +1137,7 @@ def avg_regression_center(case, statevars, respvar='UH25-05MIN', if_region='if',
             
                 
             # Grab p-values from sensitivity file for p-value thresholding
-            sens_dir = f'{drive_dir}/sens_out'
-            ds_sens = xr.open_dataset(f'{sens_dir}/sens_center_{case}/stats_{respvar}_max_{resptime[-8:]}_{statevar}_' + \
+            ds_sens = xr.open_dataset(f'{sens_path}/sens_center_{case}/stats_{respvar}_max_{resptime[-8:]}_{statevar}_' + \
                               f'{str(state_time.hour).zfill(2)}_{str(state_time.minute).zfill(2)}_00.nc')
             state =  ds_state[f'{statevar}']
             pstat = np.abs(ds_sens.pstat)
@@ -1188,7 +1190,7 @@ def avg_regression_center(case, statevars, respvar='UH25-05MIN', if_region='if',
         plt.tight_layout()
         
         if save == True:
-            outdir = '/Users/williamfaletti/Documents/python/thesis/wofs_code/sens_outplots_center'
+            outdir = f'{outplot_path}/sens_outplots_center'
         
             plt.savefig(f'{outdir}/{case}/avg_regressions/avgregress_center_{state_time.year}{str(state_time.month).zfill(2)}' + \
                 f'{str(state_time.day).zfill(2)}{str(state_time.hour).zfill(2)}_{str(state_time.minute).zfill(2)}_' + \
@@ -1215,9 +1217,9 @@ def sens_plot_gr(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-125,
     """
     
     # Define shapefiles and their mapping parameters
-    shapefiles = ['/Users/williamfaletti/Documents/python/thesis/mapping/us_counties_states/cb_2018_us_state_20m.shp']
-    edgecolor = ['k']
-    lw = [1.4]
+    shapefiles = [ wofunits.mapping['shapefiles'][1] ]
+    edgecolor = [ wofunits.mapping['edgecolor'][1] ]
+    lw = [ wofunits.mapping['lw'][1] ]
     
     # Define case specs
     wofs_casedir, file_latlons, file_coords, file_resp_coords, file_mrms_maxima, files_wofs, state_times, resptime = case_sel(case)
@@ -1241,7 +1243,7 @@ def sens_plot_gr(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-125,
         
         resp_time = datetime.datetime(int(respyear), int(respmonth), int(respday), int(resphour), int(respmin))
         
-        file_ref = f'{drive_dir}/WOFS_output/wofs_{inityear}{initmonth}{initday}_{inithour}' + \
+        file_ref = f'{wofs_path}/wofs_{inityear}{initmonth}{initday}_{inithour}' + \
                     f'{initmin}/wofs_i{inityear}{initmonth}{initday}{inithour}{initmin}_v{state_time.year}{str_statemonth}' + \
                     f'{state_time.day}{str_statehour}{str_statemin}.nc'
         
@@ -1275,7 +1277,7 @@ def sens_plot_gr(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-125,
                 if nrow==1 and ncol==1:
                     statevar=statevars[3]
                 
-                file_sens = f'{drive_dir}/sens_out/sens_2019{initmonth}{initday}{inithour}{initmin}' + \
+                file_sens = f'{sens_path}/sens_2019{initmonth}{initday}{inithour}{initmin}' + \
                             f'/stats_{respvar}_max_{resphour}_{respmin}_00_{statevar}_{str_statehour}_{str_statemin}_00.nc'
                 
                 ds_sens = xr.open_dataset(file_sens)
@@ -1348,7 +1350,7 @@ def sens_plot_gr(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-125,
         plt.suptitle(f'{int((resp_time - state_time).seconds/60)}-min lead time', weight='bold')
         plt.tight_layout()
         
-        outdir = '/Users/williamfaletti/Documents/python/thesis/wofs_code/sens_outplots_gr'
+        outdir = f'{outplot_path}/sens_outplots_gr'
         
         if save == True:
             
@@ -1364,7 +1366,7 @@ def sens_plot_gr(case, senstype, respvar, statevars, cmap='RdBu_r', xlims=(-125,
     plt.show()
     
 
-def plot_domain(storm_ang, ang_bounds, if_region='if', lw=2, color='k', nf_dist=40, ff_dist=120, domain_lag=0, dashes=(5, 1.8), subplot=False, ax=None):
+def plot_domain(storm_ang, ang_bounds, if_region='if', lw=2, color='k', nf_dist=40, ff_dist=120, domain_lag=0, subplot=False, ax=None):
     """
     Given inflow domain specs for storm-relative x/y meshgrids (in km), plots domain bounds for
     near- and far-inflow.
@@ -1403,78 +1405,78 @@ def plot_domain(storm_ang, ang_bounds, if_region='if', lw=2, color='k', nf_dist=
         
         if if_region == 'nf':
                     # near-field
-            plt.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--',dashes=dashes) # above 0
-            plt.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            plt.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            plt.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                     # plot angle bound lines
             plt.plot([-domain_lag_x, (nf_dist+domain_lag_x)*np.cos(angles1[-1])-domain_lag_x], 
                      [-domain_lag_y, (nf_dist+domain_lag_y)*np.sin(angles1[-1])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # above 0
+                     color = color,lw=lw, ls='--') # above 0
             plt.plot([-domain_lag_x, (nf_dist+domain_lag_x)*np.cos(angles2[0])-domain_lag_x], 
                      [-domain_lag_y, (nf_dist+domain_lag_y)*np.sin(angles2[0])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # below 360
+                     color = color,lw=lw, ls='--') # below 360
             
         elif if_region == 'if':
                 # far-field
-            plt.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # above 0
-            plt.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            plt.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            plt.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                 # plot angle bound lines
             plt.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles1[-1])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles1[-1])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # above 0
+                     color = color,lw=lw, ls='--') # above 0
             plt.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles2[0])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles2[0])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # below 360
+                     color = color,lw=lw, ls='--') # below 360
         elif if_region == 'both':
                 # far-field
-            plt.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # above 0
-            plt.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            plt.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            plt.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                 # near-field
-            plt.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # above 0
-            plt.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            plt.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            plt.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                 # plot angle bound lines
             plt.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles1[-1])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles1[-1])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # above 0
+                     color = color,lw=lw, ls='--') # above 0
             plt.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles2[0])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles2[0])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # below 360
+                     color = color,lw=lw, ls='--') # below 360
         # if subplot
     if subplot == True: 
         
         if if_region == 'nf':
                     # near-field
-            ax.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # above 0
-            ax.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            ax.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            ax.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                     # plot angle bound lines
             ax.plot([-domain_lag_x, (nf_dist+domain_lag_x)*np.cos(angles1[-1])-domain_lag_x], 
                      [-domain_lag_y, (nf_dist+domain_lag_y)*np.sin(angles1[-1])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # above 0
+                     color = color,lw=lw, ls='--') # above 0
             ax.plot([-domain_lag_x, (nf_dist+domain_lag_x)*np.cos(angles2[0])-domain_lag_x], 
                      [-domain_lag_y, (nf_dist+domain_lag_y)*np.sin(angles2[0])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # below 360
+                     color = color,lw=lw, ls='--') # below 360
             
         elif if_region == 'if':
                 # far-field
-            ax.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # above 0
-            ax.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            ax.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            ax.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                 # plot angle bound lines
             ax.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles1[-1])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles1[-1])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # above 0
+                     color = color,lw=lw, ls='--') # above 0
             ax.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles2[0])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles2[0])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # below 360
+                     color = color,lw=lw, ls='--') # below 360
         elif if_region == 'both':
                 # far-field
-            ax.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # above 0
-            ax.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            ax.plot((ff_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            ax.plot((ff_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (ff_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                 # near-field
-            ax.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # above 0
-            ax.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--', dashes=dashes) # below 360
+            ax.plot((nf_dist+domain_lag_x)*np.cos(angles1)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles1)-domain_lag_y, color = color,lw=lw, ls='--') # above 0
+            ax.plot((nf_dist+domain_lag_x)*np.cos(angles2)-domain_lag_x, (nf_dist+domain_lag_y)*np.sin(angles2)-domain_lag_y, color = color,lw=lw, ls='--') # below 360
                 # plot angle bound lines
             ax.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles1[-1])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles1[-1])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # above 0
+                     color = color,lw=lw, ls='--') # above 0
             ax.plot([-domain_lag_x, (ff_dist+domain_lag_x)*np.cos(angles2[0])-domain_lag_x], 
                      [-domain_lag_y, (ff_dist+domain_lag_y)*np.sin(angles2[0])-domain_lag_y], 
-                     color = color,lw=lw, ls='--', dashes=dashes) # below 360
+                     color = color,lw=lw, ls='--') # below 360
